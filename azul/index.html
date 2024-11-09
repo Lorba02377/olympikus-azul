@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Desafio Novembro Azul Olympikus</title>
+
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos otimizados -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            background-color: #b4b4b4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #1e90e9;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #002ec6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #001a80;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .strong {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .progress {
+            background-color: #1e90e9;
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        .btn-answer {
+            display: block;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-answer:hover {
+            background-color: #ddd;
+        }
+
+        /* Mensagem de erro */
+        .error-message {
+            display: none;
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #d32f2f;
+        }
+
+        /* Tamanho da imagem reduzido */
+        .product-image {
+            width: 70%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+   
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <div class="header">
+        <img src="https://logodownload.org/wp-content/uploads/2017/06/olympikus-logo-1.png" alt="Olympikus Logo">
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>BEM-VINDO AO DESAFIO NOVEMBRO AZUL OLYMPIKUS!</h2>
+
+        <img src="https://vulcabras.vtexassets.com/arquivos/ids/291465-1300-1300?v=638590923019400000&width=1300&height=1300&aspect=true" alt="Olympikus Azul" class="product-image" loading="lazy">
+
+        <p id="question-text">Participe do <strong class="strong">Desafio de Conscientização Novembro Azul da Olympikus</strong> e ajude a apoiar a saúde masculina!</p>
+
+        <!-- Barra de progresso -->
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <!-- Perguntas -->
+        <div class="question" id="question-container">
+            <p id="question-title">O que representa o Novembro Azul?</p>
+            <div class="btn-answer" onclick="checkAnswer(0)">Uma campanha de prevenção ao câncer de próstata</div>
+            <div class="btn-answer" onclick="checkAnswer(1)">Uma celebração do Dia dos Pais</div>
+            <div class="btn-answer" onclick="checkAnswer(2)">Uma campanha de incentivo ao esporte masculino</div>
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div id="error-message" class="error-message">Resposta incorreta! Por favor, tente novamente.</div>
+
+        <!-- Botão final -->
+        <a href="produto/index.html" id="final-btn" class="btn" style="display: none;">FINALIZAR DESAFIO</a>
+    </div>
+
+    <!-- Script JS -->
+    <script defer>
+        const questions = [
+            {
+                question: "O que representa o Novembro Azul?",
+                answers: ["Uma campanha de prevenção ao câncer de próstata", "Uma celebração do Dia dos Pais", "Uma campanha de incentivo ao esporte masculino"],
+                correct: 0
+            },
+            {
+                question: "Qual é a importância do exame de próstata na prevenção do câncer?",
+                answers: ["Ajuda a identificar sinais precoces da doença", "Deve ser feito apenas após os 60 anos", "Recomendado apenas para quem tem histórico familiar"],
+                correct: 0
+            },
+            {
+                question: "Quais são os principais fatores de risco para o câncer de próstata?",
+                answers: ["Prática de exercícios e alimentação saudável", "Histórico familiar, idade e alimentação inadequada", "Uso de roupas apertadas"],
+                correct: 1
+            },
+            {
+                question: "Qual é o percentual de cura quando o câncer de próstata é detectado precocemente?",
+                answers: ["10%", "90%", "50%"],
+                correct: 1
+            },
+            {
+                question: "Para onde será destinado o valor arrecadado com as vendas do Olympikus Novembro Azul?",
+                answers: ["Para instituições de prevenção e tratamento do câncer de próstata", "Para campanhas de moda", "Para financiar novas cores das garrafas"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        const totalQuestions = questions.length;
+
+        const questionContainer = document.getElementById('question-container');
+        const questionTitle = document.getElementById('question-title');
+        const progress = document.getElementById('progress');
+        const finalBtn = document.getElementById('final-btn');
+        const questionText = document.getElementById('question-text');
+        const errorMessage = document.getElementById('error-message');
+
+        function loadQuestion(index) {
+            const q = questions[index];
+            questionTitle.textContent = q.question;
+            const btnAnswers = document.querySelectorAll('.btn-answer');
+            btnAnswers.forEach((btn, i) => {
+                btn.textContent = q.answers[i];
+                btn.setAttribute('onclick', `checkAnswer(${i})`);
+            });
+
+            const progressPercentage = ((index + 1) / totalQuestions) * 100;
+            progress.style.width = progressPercentage + '%';
+            errorMessage.style.display = 'none';
+        }
+
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].correct) {
+                currentQuestion++;
+                if (currentQuestion < totalQuestions) {
+                    loadQuestion(currentQuestion);
+                } else {
+                    showFinalMessage();
+                }
+            } else {
+                errorMessage.style.display = 'block'; // Mostrar mensagem de erro
+            }
+        }
+
+        function showFinalMessage() {
+            questionText.textContent = "Parabéns! Você concluiu o Desafio Novembro Azul Olympikus e ganhou 80% de desconto!";
+            questionContainer.style.display = 'none';
+            errorMessage.style.display = 'none';
+            finalBtn.style.display = 'block';
+        }
+
+        loadQuestion(currentQuestion);
+    </script>
+</body>
+
+</html>
